@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+</head>
+
+<body>
+    <header>
+        <!-- place navbar here -->
+    </header>
+    <main>
+        <div class="mb-3">
+            <div class="card text-start">
+                <div class="card-body">
+                    <form action="" method="post">
+                        <h4 class="card-title"> Request Form</h4>
+                        <label for="farmer_category" class="form-label">Farmer Category</label>
+                        <select class="form-control" name="farmer_category" id="farmer_category">
+                            <option selected>Select one</option>
+                            <option value="starter">Starter</option>
+                            <option value="Continous">Continous</option>
+                        </select>
+                        <label for="farmer_name" class="form-label"> Farmer's Name </label>
+                        <select class="form-control" name="farmer_name" id="farmer_name">
+                            <option selected>Select one</option>
+                            <option value="farmer_name">{{farmer_name}}</option>
+                        </select>
+                        <label for="age" class="form-label"> Age </label>
+                        <input type="text" name="age" id="age" class="form-control" placeholder="e.g. 26">
+                        <label for="contact" class="form-label">Contact</label>
+                        <input type="number" name="contact" id="contact" class="form-control"
+                            placeholder="e.g. 0788667754">
+                        <label for="feeds_bag" class="form-label"> Do you need the bags of feeds? </label>
+                        <select class="form-control" name="feeds_bag" id="feeds_bag">
+                            <option selected>Select one</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                        <label for="feeds" class="form-label">Feeds</label>
+                        <input type="number" name="feeds" id="feeds" class="form-control" placeholder="e.g. 2" 
+                            for="payment" class="form-label">Payment Method</label>
+                        <select class="form-control" name="payment" id="payment">
+                            <option selected>Select one</option>
+                            <option value="cash">Cash</option>
+                            <option value="visa">Visa</option>
+                            <option value="mobile_money">Mobile Money</option>
+                        </select>
+                        <label for="date" class="form-label">Date</label>
+                        <input type="date" name="date" id="date" class="form-control">
+
+                        <br>
+
+                        <a name="submit" id="submit" class="btn btn-primary" href="#" role="button">Submit</a>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

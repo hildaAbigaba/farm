@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Young4Chicks - OCR ID Registration</title>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.1/dist/tesseract.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pica@8.0.0/dist/pica.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 2rem;
+        }
+
+        label {
+            display: block;
+            margin-top: 1rem;
+        }
+
+        input,
+        button {
+            padding: 0.5rem;
+            margin-top: 0.3rem;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        #output {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Young4Chicks - ID Scanner Registration</h2>
+    <p>How would you like to register?</p>
+    <button onclick="useNationalID()">📷 I have a National ID</button>
+    <button onclick="useNameInstead()">🔍 Use Name or Phone Number</button>
+
+    
+    <label for="idImage">📸 Upload National ID Image</label>
+    <input type="file" id="idImage" accept="image/*" onchange="processID(this)">
+
+    <label for="name">👤 Name</label>
+    <input type="text" id="name" placeholder="Full Name" readonly>
+
+    <label for="dob">🎂 Date of Birth</label>
+    <input type="date" id="dob" onchange="checkAge()" readonly>
+
+    <label for="nin">🆔 NIN</label>
+    <input type="text" id="nin" placeholder="NIN Number" readonly>
+
+    <label for="age">📅 Age</label>
+    <input type="text" id="age" readonly>
+    <div id="output"></div>
+
+
+
+    <script>
+        function useNationalID() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    const video = document.createElement('video');
+                    video.srcObject = stream;
+                    video.play();
+                    document.body.appendChild(video);
+
+                    // Let user click "Capture"
+                    const captureButton = document.createElement('button');
+                    captureButton.textContent = "📸 Capture ID";
+                    captureButton.onclick = () => {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = video.videoWidth;
+                        canvas.height = video.videoHeight;
+                        canvas.getContext('2d').drawImage(video, 0, 0);
+
+                        // Stop video
+                        stream.getTracks().forEach(track => track.stop());
+                        video.remove();
+
+                        // Use Tesseract.js to extract text
+                        Tesseract.recognize(canvas, 'eng')
+                            .then(({ data: { text } }) => {
+                                parseExtractedText(text); // Your parsing logic here
+                            });
+                    };
+                    document.body.appendChild(captureButton);
+                });
+        }
+
+
+
+        function checkAge() {
+            const dobInput = document.getElementById("dob").value;
+            if (!dobInput) return;
+
+            const dob = new Date(dobInput);
+            const today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            const m = today.getMonth() - dob.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+
+            document.getElementById("age").value = age;
+
+            const output = document.getElementById("output");
+            if (age >= 18 && age <= 30) {
+                output.textContent = `✅ Farmer is valid (Age: ${age})`;
+                output.style.color = "green";
+            } else {
+                output.textContent = `❌ Not eligible (Age: ${age})`;
+                output.style.color = "red";
+            }
+        }
+    </script>
+</body>
+
+</html>
