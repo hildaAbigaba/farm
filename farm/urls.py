@@ -22,7 +22,7 @@ from sales.views import registrationpage,test,requestpage
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('records/', RecordsPage),
-    path('sales/', registrationpage),
+    path('register/', registrationpage),
     path('test/', test),
     path('request/', requestpage)
 ]

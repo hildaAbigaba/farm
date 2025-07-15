@@ -4,6 +4,7 @@ If they ae a starter, it opens a registration page then immediately they subit, 
 The farmer's name will be got from the registration page i.e. my databse, it will show a part of their NIN
 
 Automatic calculation in the background incase one enters the chicken, It will display on the summary page
+Generating a receipt
 
 Age, contact info will be autofilled
 
